@@ -38,4 +38,9 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: mvn integration-test
+      #- run: mvn integration-test
+      - run: go get -u github.com/awslabs/amazon-ecr-credential-helper/ecr-login/cli/docker-credential-ecr-login
+      - run: mvn compile jib:dockerBuild
+      - run: mvn compile jib:build
+
+
